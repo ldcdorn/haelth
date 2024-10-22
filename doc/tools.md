@@ -18,3 +18,4 @@ only a suggestion... use common sense if you're in doubt.
 * HÆLTH is primarily written in [Kotlin](https://kotlinlang.org/).
 * We use [git](https://git-scm.com/) for version control.
 * [GitHub](https://github.com/) is our git forge and our PM Platform.
+* [Figma](https://www.figma.com/) is used for UI Mockups
