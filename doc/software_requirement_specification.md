@@ -1,52 +1,37 @@
-# Projektname
-## Softwareanforderungen
-> Bei dieser Vorlage handelt es sich um eine vereinfachte Version, die auf den Dokumentationsvorlagen von IBM Rational Unified Process (RUP) basiert.
+# Project HÆLTH
+## Software Requirements
 
-### 1. Einleitung
+### 1. Introduction
 
-#### 1.1 Übersicht
-> Was sind die Verkaufsargumente bzw. Alleinstellungsmerkmale Ihrer Software?
+#### 1.1 Overview
+Project HÆLTH is about creating an app that helps its users track their overall health, focusing on the areas of exercise, nutrition, and mindfulness.
 
-#### 1.2 Geltungsbereich
-> Was wird in diesem Dokument behandelt (nicht behandelt)? Ist es für Ihr gesamtes System oder ein Subsystem? Deckt es sowohl funktionale als auch nichtfunktionale Anforderungen ab? (Werden Sie einige Anforderungen in ein anderes Dokument auslagern?)
+#### 1.2 Scope
+This document covers the essential and most crucial requirements of project HÆLTH (functional and non-functional). It provides a overview of the UI Mockup and the different Use-Case-Diagrams.
 
-#### 1.3 Definitionen, Akronyme und Abkürzungen
-> Definitionen aller Begriffe, Akronyme und Abkürzungen, die für die ordnungsgemäße Interpretation dieses Dokuments erforderlich sind.
+#### 1.3 Definitions, Acronyms and Abbreviations
+UI: User Interface
 
-#### 1.4 Referenzen
-> Eine vollständige Liste aller referenzierten Dokumente. Jedes Dokument sollte anhand von Titel, Datum und Veröffentlichungsorganisation identifiziert werden. Sie können auch Hyperlinks einfügen, um die Referenzen bequem zu öffnen.
+### 2. Functional Requirements
 
-### 2. Funktionale Anforderungen
-> Dieser Abschnitt enthält alle Softwareanforderungen in einem ausreichenden Detaillierungsgrad, damit Designer ein System entwerfen können, das diese Anforderungen erfüllt, und Tester testen können, ob das System diese Anforderungen erfüllt.
-> Dieser Abschnitt ist normalerweise nach Funktionen geordnet, es können jedoch auch alternative Gliederungen geeignet sein, beispielsweise die Gliederung nach Benutzer oder die Gliederung nach Subsystem.
+#### 2.1 Overview
+Our app aims to offer a comprehensive platform where users can seamlessly monitor their daily habits, set wellness goals, and receive personalized feedback. By combining these core aspects of health, HÆLTH supports users in achieving a balanced lifestyle, while staying mindful of their physical and mental well-being.
 
-> [HINWEIS:]
-> Sie können Links zu Ihren UML-Diagrammen und User Stories oder die Bezeichnungen der User Stories in dieses Dokument einfügen.
+#### 2.2 Name of Feature 1 / Use Case 1
+> Specify this feature / use case by:
+> - Relevant **User Stories**
+> - **UI Mockups**
+> - **UML Behavioral Diagrams** and necessary text specification
+> - **Prerequisites**. *A prerequisite for a use case is the state of the system that must exist before a use case is executed.*
+> - **Postconditions**. *A postcondition of a use case is a list of possible states the system can be in immediately after a use case is completed.*
+> - **Estimated Effort (High, Medium, Low)**
 
-#### 2.1 Übersicht
-> Eine kurze Beschreibung der Funktionalität Ihrer Anwendung.
-> Fügen Sie ein oder mehrere **UML-Anwendungsfalldiagramme** und die erforderliche Beschreibung hinzu, um die wichtigsten Anwendungsfälle Ihrer Anwendung wiederzugeben.
-
-#### 2.2 Name von Feature 1 / Anwendungsfall 1
-> Spezifizieren Sie diese Funktion/diesen Anwendungsfall durch:
-> - Relevante **User Stories**
-> - **UI-Mockups**
-> - **UML-Verhaltensdiagramme** und notwendige Textspezifikation
-> - **Voraussetzungen**. *Eine Voraussetzung für einen Anwendungsfall ist der Zustand des Systems, der vorliegen muss, bevor ein Anwendungsfall ausgeführt wird.*
-> - **Nachbedingungen**. *Eine Nachbedingung eines Anwendungsfalls ist eine Liste möglicher Zustände, in denen sich das System unmittelbar nach Abschluss eines Anwendungsfalls befinden kann.*
-> - **Geschätzter Aufwand (hoch, mittel, niedrig)**
-
-#### 2.3 Name von Feature 2 / Anwendungsfall 2
+#### 2.3 Name of Feature 2 / Use Case 2
 ... ...
 
-### 3. Nichtfunktionale Anforderungen
-
-> [WICHTIG:]
-> Es ist nicht notwendig, alle der folgenden Kategorien abzudecken. Konzentrieren Sie sich auf das, was Sie in Ihrem Projekt umsetzten werden.
-> Wenn einige nichtfunktionale Anforderungen als User Stories in Ihrem Backlog beschrieben werden, fügen Sie deren **Links** in diesem Abschnitt hinzu oder beliebige Informationen, die den Leser bei der Suche nach ihnen in Ihrem Backlog unterstützen, z.B. die **Bezeichnung** der relevanten User Story.
-
-> Kategorien: Benutzerfreundlichkeit, Zuverlässigkeit, Leistung, Effizienz, Integrität, Wartbarkeit, Flexibilität, Testbarkeit, Wiederverwendbarkeit, Sicherheit.
-
-
-### 4. Technische Einschränkungen
-> Geben Sie alle wichtigen Einschränkungen, Annahmen oder Abhängigkeiten an, z. B. alle Einschränkungen darüber, welcher Servertyp verwendet werden soll, welche Art von Open-Source-Lizenz eingehalten werden muss usw.
+### 3. Non-functional Requirements
+Since our team is heavily working with user stories, the non-functional requirements are mostly covered by said stories:  
+- Performace: [User story "Performace requirement"](https://github.com/ldcdorn/haelth/issues/24)
+- Usability: [User story "Create UI"](https://github.com/ldcdorn/haelth/issues/6)
+- Flexibility: [User story "Offline functions"](https://github.com/ldcdorn/haelth/issues/25)
+- Reliability: [User story "App stability"](https://github.com/ldcdorn/haelth/issues/26)
