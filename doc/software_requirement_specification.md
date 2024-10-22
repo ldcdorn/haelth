@@ -17,17 +17,20 @@ UI: User Interface
 #### 2.1 Overview
 Our app aims to offer a comprehensive platform where users can seamlessly monitor their daily habits, set wellness goals, and receive personalized feedback. By combining these core aspects of health, HÆLTH supports users in achieving a balanced lifestyle, while staying mindful of their physical and mental well-being.
 
-#### 2.2 Name of Feature 1 / Use Case 1
-> Specify this feature / use case by:
-> - Relevant **User Stories**
-> - **UI Mockups**
-> - **UML Behavioral Diagrams** and necessary text specification
-> - **Prerequisites**. *A prerequisite for a use case is the state of the system that must exist before a use case is executed.*
-> - **Postconditions**. *A postcondition of a use case is a list of possible states the system can be in immediately after a use case is completed.*
-> - **Estimated Effort (High, Medium, Low)**
+#### 2.2 Use Case: Meditation exercises
+- The user wants to improve his/her mindfulness through (meditation) exercises.
+- Part of the [UI Mockup](https://github.com/ldcdorn/haelth/blob/main/doc/ui_mockup.fig) (Right side column)
+- Use case diagram: ![image](https://github.com/user-attachments/assets/5d74702f-3f3b-4157-a539-b2890fc027dc)
 
-#### 2.3 Name of Feature 2 / Use Case 2
-... ...
+#### 2.3 Use Case: Diet tracking
+- The user would like to able to track and view his diet thoughout the day.
+- Part of the [UI Mockup](https://github.com/ldcdorn/haelth/blob/main/doc/ui_mockup.fig) (Middle column)
+- Use case diagram: ![image](https://github.com/user-attachments/assets/66c6c042-3ac8-45be-a852-2639b8b28137)
+
+#### 2.4 Use Case: Files export
+- The user would like to export his files locally
+- Eg. as .csv
+- Use case diagram: ![image](https://github.com/user-attachments/assets/d726d248-7e46-46d8-81b0-1665a89eb4d1)
 
 ### 3. Non-functional Requirements
 Since our team is heavily working with user stories, the non-functional requirements are mostly covered by said stories:  
