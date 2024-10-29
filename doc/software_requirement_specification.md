@@ -38,3 +38,14 @@ Since our team is heavily working with user stories, the non-functional requirem
 - Usability: [User story "Create UI"](https://github.com/ldcdorn/haelth/issues/6)
 - Flexibility: [User story "Offline functions"](https://github.com/ldcdorn/haelth/issues/25)
 - Reliability: [User story "App stability"](https://github.com/ldcdorn/haelth/issues/26)
+
+### 4. Activity Diagrams
+
+The Activity Diagram concerning Workouts:
+![screenshot_aktivitatsdiagramm_workout](https://github.com/user-attachments/assets/5d12d1b4-f274-4d66-b858-e22f54f5bee5)
+
+The Activity Diagram concerning Nutrition:
+![screenshot_aktivitatsdiagram_nutrition](https://github.com/user-attachments/assets/b10a9897-0dda-4621-b270-767cf089326b)
+
+The Activity Diagram concerning Mindfullness:
+![screenshot_aktivitatsdiagramm_mindfullness](https://github.com/user-attachments/assets/a786e8f1-9b2c-40b7-8137-fa66496c7d5f)
