@@ -21,17 +21,30 @@ Our app aims to offer a comprehensive platform where users can seamlessly monito
 - The user wants to improve his/her mindfulness through (meditation) exercises.
 - Part of the [UI Mockup](https://github.com/ldcdorn/haelth/blob/main/doc/ui_mockup.fig) (Right side column)
 - Use case diagram: ![image](https://github.com/user-attachments/assets/5d74702f-3f3b-4157-a539-b2890fc027dc)
+- Activity diagram: ![screenshot_aktivitatsdiagramm_mindfullness](https://github.com/user-attachments/assets/a786e8f1-9b2c-40b7-8137-fa66496c7d5f)
 
 #### 2.3 Use Case: Diet tracking
 - The user would like to able to track and view his diet thoughout the day.
 - Part of the [UI Mockup](https://github.com/ldcdorn/haelth/blob/main/doc/ui_mockup.fig) (Middle column)
 - Use case diagram: ![image](https://github.com/user-attachments/assets/66c6c042-3ac8-45be-a852-2639b8b28137)
+- Activity diagram: ![screenshot_aktivitatsdiagram_nutrition](https://github.com/user-attachments/assets/b10a9897-0dda-4621-b270-767cf089326b)
+- Sequence diagram for adding a meal:
+
+![sequence_diagram_addMeal](https://github.com/user-attachments/assets/fc01d358-8f64-4f9b-bb74-09f4788ed9ce)
+- Sequence diagram for viewing today's nutrition:
+
+![sequence_diagram_viewNutrition](https://github.com/user-attachments/assets/6efea154-47c3-4c01-b593-54b08bb165ac)
 
 #### 2.4 Use Case: Files export
 - The user would like to export his files locally
 - Eg. as .csv
 - Use case diagram: ![image](https://github.com/user-attachments/assets/d726d248-7e46-46d8-81b0-1665a89eb4d1)
 
+#### 2.5 Use Case: Workout tracking
+- The user would like to able to track and view his exercises and workouts.
+- Part of the [UI Mockup](https://github.com/ldcdorn/haelth/blob/main/doc/ui_mockup.fig) (Left column)
+- Activity Diagram: ![screenshot_aktivitatsdiagramm_workout](https://github.com/user-attachments/assets/5d12d1b4-f274-4d66-b858-e22f54f5bee5)
+  
 ### 3. Non-functional Requirements
 Since our team is heavily working with user stories, the non-functional requirements are mostly covered by said stories:  
 - Performace: [User story "Performace requirement"](https://github.com/ldcdorn/haelth/issues/24)
@@ -39,13 +52,4 @@ Since our team is heavily working with user stories, the non-functional requirem
 - Flexibility: [User story "Offline functions"](https://github.com/ldcdorn/haelth/issues/25)
 - Reliability: [User story "App stability"](https://github.com/ldcdorn/haelth/issues/26)
 
-### 4. Activity Diagrams
 
-The Activity Diagram concerning Workouts:
-![screenshot_aktivitatsdiagramm_workout](https://github.com/user-attachments/assets/5d12d1b4-f274-4d66-b858-e22f54f5bee5)
-
-The Activity Diagram concerning Nutrition:
-![screenshot_aktivitatsdiagram_nutrition](https://github.com/user-attachments/assets/b10a9897-0dda-4621-b270-767cf089326b)
-
-The Activity Diagram concerning Mindfullness:
-![screenshot_aktivitatsdiagramm_mindfullness](https://github.com/user-attachments/assets/a786e8f1-9b2c-40b7-8137-fa66496c7d5f)
