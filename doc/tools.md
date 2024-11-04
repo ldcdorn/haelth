@@ -17,5 +17,8 @@ only a suggestion... use common sense if you're in doubt.
   environment.
 * HÆLTH is primarily written in [Kotlin](https://kotlinlang.org/).
 * We use [git](https://git-scm.com/) for version control.
+  * Please stick to the [Conventional Commits][1] commit message format.
 * [GitHub](https://github.com/) is our git forge and our PM Platform.
 * [Figma](https://www.figma.com/) is used for UI Mockups
+
+[1]: https://www.conventionalcommits.org/en/v1.0.0/
