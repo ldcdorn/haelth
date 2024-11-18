@@ -1,0 +1,132 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.3">
+  <diagram name="Seite-1" id="ceTHnDnl-z9Mib-NQiyY">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="m8RsasOok_PdFph8VfHP-96" value="" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="384" y="20" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-97" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-98" target="m8RsasOok_PdFph8VfHP-101">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-98" value="User executes the application" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="339" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-99" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-96" target="m8RsasOok_PdFph8VfHP-98">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="270" as="sourcePoint" />
+            <mxPoint x="430" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-100" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-101" target="m8RsasOok_PdFph8VfHP-114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-101" value="Nutrition" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="339" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-102" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="m8RsasOok_PdFph8VfHP-107">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="399" y="510" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-103" value="Add Mealplan" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="339" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-104" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-107" target="m8RsasOok_PdFph8VfHP-120">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-105" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-107" target="m8RsasOok_PdFph8VfHP-109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-106" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-107" target="m8RsasOok_PdFph8VfHP-101">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-107" value="View Available Meal or add new Meal?" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="359" y="560" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-108" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-109">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="260" y="760" />
+              <mxPoint x="260" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-109" value="Fill in details such as mealname, calories, carbs, fats, protein" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="339" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-110" value="View available Meal(&amp;nbsp;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;User presses on one of the Meal buttons)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="340" y="610" width="360" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-111" value="Add new Meal" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="410" y="670" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-112" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-114" target="m8RsasOok_PdFph8VfHP-116">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-113" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-114" target="m8RsasOok_PdFph8VfHP-103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-114" value="New Mealplan or previous Mealplan" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="359" y="310" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-115" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-116" target="m8RsasOok_PdFph8VfHP-128">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-116" value="Meal Tab of the Selected Mealplan" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-117" value="prev Mealplan(&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;User presses on one of the Mealplans&lt;/span&gt;)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="339" y="300" width="310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-118" value="new Unit" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="400" y="398" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-119" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-120">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="670" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-120" value="View and change details if needed" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-121" value="View and change details if needed" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-122" value="&quot;Confirm&quot; - Button pressed" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="490" y="510" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-123" value="Select &quot;Haelth&quot; - Icon at the top" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="130" y="390" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-124" value="&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;User presses on one of the Meal buttons&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="837" y="390" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-125" value="&quot;Confirm&quot; - Button pressed" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="90" y="630" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-126" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-128" target="m8RsasOok_PdFph8VfHP-121">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="m8RsasOok_PdFph8VfHP-128" target="m8RsasOok_PdFph8VfHP-101">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-128" value="" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="310" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="m8RsasOok_PdFph8VfHP-129" value="Select &quot;Haelth&quot; - Icon at the top" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="515" y="208" width="190" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
