@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.ldcdorn.haelth.databinding.FragmentDashboardBinding
@@ -12,9 +13,6 @@ import com.github.ldcdorn.haelth.databinding.FragmentDashboardBinding
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -28,10 +26,29 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val mealNameEditText: EditText = binding.nutritionCardNameMeal
+        val proteinEditText: EditText = binding.editTextNumber2
+        val fatEditText: EditText = binding.editTextNumber3
+        val carbsEditText: EditText = binding.editTextNumber4
+        val saveButton = binding.button
+
+        saveButton.setOnClickListener {
+            val mealName = mealNameEditText.text.toString()
+            val protein = proteinEditText.text.toString()
+            val fat = fatEditText.text.toString()
+            val carbs = carbsEditText.text.toString()
+
+            if (mealName.isEmpty() || protein.isEmpty() || fat.isEmpty() || carbs.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Entered: $mealName, Protein: $protein, Fat: $fat, Carbs: $carbs",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
+
         return root
     }
 
