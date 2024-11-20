@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Haelth</string>
-    <string name="title_home">Mindfullness</string>
+    <string name="title_home">Mindfulness</string>
     <string name="title_dashboard">Nutrition</string>
     <string name="title_notifications">Fitness</string>
     <string name="nutrition_card_title">Add Meal</string>
