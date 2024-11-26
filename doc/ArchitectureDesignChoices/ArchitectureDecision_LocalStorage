@@ -11,7 +11,7 @@ we need to make a decision on where and how we wish to store said data that ensu
 
 ## Decision
 
-Chosen option: "Local Storage". We chose Local Storage because it ensures the data is not directly connected to the internet and physically seperated for each user. Local storage eliminated the risk of large data leaks as there is no central database that contains all user data.
+Chosen option: "Local Storage". We chose Local Storage because it ensures the data is not directly connected to the internet and physically seperated for each user. Local storage eliminates the risk of large data leaks as there is no central database that contains all user data.
 A attack is infeasible as the effort a atacker needed to put in outways the value of the data by far. Local Storage allows the user to have full control over his data and does not need to worry about it getting stolen or sold.
 
 
