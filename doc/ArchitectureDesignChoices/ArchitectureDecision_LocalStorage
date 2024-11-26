@@ -1,25 +1,22 @@
-# {Kurzer Titel, der das gelöste Problem und die gefundene Lösung beschreibt}
+How and where do we wish to store User Data
 
-## Kontext und Problemstellung
+As out apps funcctionality depends on storing user data to track progress
+we need to make a decision on where and how we wish to store said data that ensures safety from unauthorised access.
 
-{Beschreibt den Kontext und die Problemstellung, z.B. in zwei bis drei Sätzen freiem Text oder in der Form einer Geschichte, die das Problem veranschaulicht. Eine gute Form, das Problem auszudrücken, ist auch eine Frage. Ggf. noch Links zu Boards oder Ticketing System.}
 
+## Options
 
-## Betrachtete Varianten
+* Remote Database
+* Local Storage
 
-* {Titel der Variante 1}
-* {Titel der Variante 2}
-* {Titel der Variante 3}
-* … <!-- Anzahl der Varianten kann variieren -->
+## Decision
 
-## Entscheidung
-
-Gewählte Variante: "{Titel der Variante 1}", denn {Begründung, z.B. die einzige Variante, die kein Ausschlusskriterium beinhaltet |  … | am besten abschneidet (siehe unten)}.
+Chosen option: "Local Storage". We chose Local Storage because it ensures the data is not directly connected to the internet and physically seperated for each user. Local storage eliminated the risk of large data leaks as there is no central database that contains all user data.
+A attack is infeasible as the effort a atacker needed to put in outways the value of the data by far. Local Storage allows the user to have full control over his data and does not need to worry about it getting stolen or sold.
 
 
 ## Status
-<!-- Eine Entscheidung kann „vorgeschlagen“ werden, wenn die Projektbeteiligten ihr noch nicht zugestimmt haben, oder „angenommen“, wenn sie angenommen wurde. 
-     Wenn ein späteres ADR eine Entscheidung ändert oder aufhebt, kann sie als „veraltet“ oder „überholt“ mit einem Verweis auf ihre Ersetzung gekennzeichnet werden. -->
+<!-- final -->
 
 ## Konsequenzen
 
