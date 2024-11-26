@@ -1,4 +1,4 @@
-How and where do we wish to store User Data
+## How and where do we wish to store User Data
 
 As out apps funcctionality depends on storing user data to track progress
 we need to make a decision on where and how we wish to store said data that ensures safety from unauthorised access.
@@ -18,8 +18,11 @@ A attack is infeasible as the effort a atacker needed to put in outways the valu
 ## Status
 <!-- final -->
 
-## Konsequenzen
+## Consequences
+Good because:
+  Quick implementation
+  No maintanace
 
-* Gut, weil {positive Konsequenz, z.B. Verbesserung einer oder mehrerer gewünschter Eigenschaften, …}
-* Schlecht, weil {negative Konsequenz, z.B. Einschränkung einer oder mehrerer gewünschter Eigenschaften, …}
-* … <!-- Anzahl der Konsequenzen kann variieren -->
+Bad because:
+  no central overview over all data
+  customer support, data recovery, switching to new device becomes more difficult
