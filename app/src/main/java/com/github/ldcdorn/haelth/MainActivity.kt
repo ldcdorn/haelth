@@ -6,11 +6,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -63,6 +65,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.ui.text.font.FontWeight
 import com.github.ldcdorn.haelth.ui.theme.HaelthTheme
 import kotlinx.coroutines.delay
 
@@ -86,10 +89,17 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MainScreen(viewModel: MainViewModel) {
         val navController = rememberNavController()
-
+        Spacer(modifier = Modifier.size(24.dp))
         Scaffold(
             bottomBar = {
                 NavigationBar(navController = navController, viewModel = viewModel)
+            },
+            topBar = {
+                Box(
+                    modifier = Modifier.padding(top = 20.dp) // Verschiebe die TopBar leicht nach unten
+                ) {
+                    TopLabel(Modifier)
+                }
             }
         ) { innerPadding ->
             NavHost(
@@ -498,7 +508,51 @@ class MainActivity : ComponentActivity() {
         MindfulnessScreen()
     }
 
+    @Composable
+    fun TopLabel(modifier: Modifier = Modifier) {
+        Column(
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier
+                .requiredWidth(width = 412.dp)
+                .requiredHeight(height = 100.dp)
+                .background(color = Color(0xffece6f0))
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp,
+                        vertical = 14.dp)
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxHeight()
+                ) {
+                    Text(
+                        text = "HÆLTH",
+                        color = Color(0xff65558f),
+                        textAlign = TextAlign.Center,
+                        lineHeight = 1.12.em,
+                        style = TextStyle(
+                            fontSize = 57.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = (-0.25).sp),
+                        modifier = Modifier
+                            .wrapContentHeight(align = Alignment.CenterVertically))
+                }
+            }
+        }
+    }
 
+    @Preview(widthDp = 412, heightDp = 100)
+    @Composable
+    private fun TopLabelPreview() {
+        TopLabel(Modifier)
+    }
     private fun navigateToActivity(targetActivity: Class<out ComponentActivity>) {
         val intent = Intent(this, targetActivity)
         startActivity(intent)
