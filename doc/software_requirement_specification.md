@@ -14,8 +14,8 @@ UI: User Interface
 
 ### 2. Functional Requirements
 
-#### 2.1 Overview
-Our app aims to offer a comprehensive platform where users can seamlessly monitor their daily habits, set wellness goals, and receive personalized feedback. By combining these core aspects of health, HÆLTH supports users in achieving a balanced lifestyle, while staying mindful of their physical and mental well-being.
+#### 2.1 Overview & Vision
+Our app, HÆLTH, is designed to provide a comprehensive platform for users to effortlessly track their daily habits, establish meaningful wellness goals, and receive tailored feedback to support their journey. By integrating these essential elements of health management, HÆLTH empowers individuals to achieve a well-rounded lifestyle. It places equal emphasis on fostering mindfulness of both physical and mental well-being, ensuring users are equipped with the tools and insights needed to live healthier, more balanced lives.
 
 #### 2.2 Use Case: Meditation exercises
 - The user wants to improve his/her mindfulness through (meditation) exercises.
