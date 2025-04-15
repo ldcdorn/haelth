@@ -1,4 +1,4 @@
-package com.github.ldcdorn.haelth
+package com.github.ldcdorn.haelth.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -67,6 +67,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.text.font.FontWeight
 import com.github.ldcdorn.haelth.ui.theme.HaelthTheme
+import com.github.ldcdorn.haelth.viewmodel.MainViewModel
+import com.github.ldcdorn.haelth.R
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {

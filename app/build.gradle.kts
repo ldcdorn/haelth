@@ -63,7 +63,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.v115)
     androidTestImplementation(libs.androidx.espresso.core.v351)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(platform(libs.androidx.compose.bom)) // BOM auch hier aktiv
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+
 
     // Debugging
     debugImplementation(libs.androidx.ui.tooling)

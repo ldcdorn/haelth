@@ -1,4 +1,4 @@
-package com.github.ldcdorn.haelth
+package com.github.ldcdorn.haelth.viewmodel
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
