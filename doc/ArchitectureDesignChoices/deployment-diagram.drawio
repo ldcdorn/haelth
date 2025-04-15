@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Safari/605.1.15" version="26.2.12">
+  <diagram name="Seite-1" id="9ZXV0vgXkUZnfJkEikGd">
+    <mxGraphModel dx="1218" dy="821" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-1" value="" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="147" width="480" height="363" as="geometry" />
+        </mxCell>
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-2" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;deployment&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;HAELTH&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="150" y="140" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-3" value="" style="verticalAlign=top;align=center;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="190" y="190" width="420" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-4" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt; Android Smartphone" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="290" y="200" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-5" value="" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="220" y="240" width="360" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-6" value="&amp;lt;&amp;lt;executionEnvironment&amp;gt;&amp;gt; Android Runtime" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="284" y="250" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-7" value="" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="250" y="290" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="cjfUAj_-hQ5dMEU3OvBI-8" value="&lt;div&gt;&amp;lt;&amp;lt;executionEnvironment&amp;gt;&amp;gt; Kotlin VM&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt; haelth_app.apk&lt;/div&gt;&lt;div&gt;&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt; viewmodels&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt; util_library.aar&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt; local_database.db&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="304" y="300" width="220" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
