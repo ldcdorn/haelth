@@ -27,7 +27,20 @@ data as they see fit.
   - Necessitates the use of the MVVM patern, as this is used by Jetpack Compose's UI pipeline.
 
 # Context and Scope
-**TBD**
+
+The Meditation / Mindfullness feature requires a database of motivational quotes derived from an external source. Information given to the user about fitness may also be derived from an external source.
+All other information is created within, derived from and stays within the context and scope of the app.
 
 # Solution Strategy
-**TBD**
+
+The solution architecture of Project Haelth is centered around privacy, openness, and modern Android development best practices. The architecture leverages a modular, layered approach to ensure maintainability, testability, and scalability. Key strategies include:
+
+- MVVM Architecture: The app is built using the Model-View-ViewModel (MVVM) pattern to support Jetpack Compose and separate concerns. This enables reactive UI updates, testable business logic, and clean separation between UI and data handling layers.
+
+- Jetpack Libraries: Project Haelth uses the Android Jetpack suite (including Room, WorkManager, DataStore, and Navigation components) to simplify development and enforce modern, lifecycle-aware patterns.
+
+- On-Device Storage: All user-generated data (such as fitness metrics, goals, and logs) is stored locally using Room (SQLite) or Jetpack DataStore for lightweight key-value storage. Backups and exports are provided via open and standardized file formats (e.g., JSON, CSV).
+
+- Security and Privacy by Design: The app avoids third-party analytics and trackers. Android's Scoped Storage and encrypted local data storage are employed to secure user information. Permissions are requested in-context and only when strictly necessary.
+
+Accessibility and UX: Following the Material Design system ensures consistency and accessibility. Special attention is given to font scaling, contrast, and touch target sizes.
