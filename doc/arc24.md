@@ -44,3 +44,31 @@ The solution architecture of Project Haelth is centered around privacy, openness
 - Security and Privacy by Design: The app avoids third-party analytics and trackers. Android's Scoped Storage and encrypted local data storage are employed to secure user information. Permissions are requested in-context and only when strictly necessary.
 
 Accessibility and UX: Following the Material Design system ensures consistency and accessibility. Special attention is given to font scaling, contrast, and touch target sizes.
+
+# Risks and Technical Debt
+
+Identified Risks:
+
+Platform Evolution
+Android is a rapidly evolving platform. Changes in APIs, Jetpack components, or behavior across Android versions could cause compatibility issues or require frequent updates.
+
+Security of On-Device Data
+While the app avoids cloud storage, it must still protect data at rest. Improper encryption, weak permissions, or incorrect use of Android’s storage APIs could compromise user data.
+
+Jetpack Compose Maturity
+While Jetpack Compose is the recommended modern UI toolkit, it is still evolving. Some features may be unstable, undocumented, or incompatible with certain Android versions, especially on older devices.
+
+Technical Debt:
+
+Lack of Cross-Platform Abstraction
+The app is currently tightly coupled to the Android platform. If a future iOS or desktop version is desired, significant refactoring would be needed to separate core logic from platform-specific code.
+
+Insufficient Test Coverage
+Initial development may prioritize feature delivery over comprehensive unit and UI testing. This can lead to regressions or fragile code, especially in ViewModels and data handling logic.
+
+Data Migration Logic
+Storing data in open formats is beneficial, but ensuring forward and backward compatibility (e.g., after schema changes) will require careful versioning and migration logic that may not be in place early on.
+
+Manual Privacy Auditing
+With no automatic enforcement of privacy rules, compliance depends on disciplined development and code reviews. This leaves room for human error, especially when introducing new features or libraries.
+
