@@ -1,6 +1,6 @@
 class Nutrition {
-    var score: Int
-    var mealHistory = List()
+    var score: Int = 0
+    var meals = mutableListOf<String>()
 
     fun Nutrition() {
         // TODO

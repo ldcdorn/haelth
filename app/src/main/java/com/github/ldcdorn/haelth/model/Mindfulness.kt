@@ -1,6 +1,6 @@
 class Mindfulness {
-    var score: Int
-    var exercises = List()
+    var score: Int =0
+    var sessions = mutableListOf<String>()
 
     fun Mindfulness() {
         // TODO

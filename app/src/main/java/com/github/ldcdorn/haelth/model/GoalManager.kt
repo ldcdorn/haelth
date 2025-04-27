@@ -1,5 +1,5 @@
 class GoalManager {
-    var goals = List()
+    var goals = mutableListOf<String>()
 
     fun GoalManager() {
 

@@ -1,6 +1,8 @@
+package com.github.ldcdorn.haelth.model;
+
 class Fitness {
     var score: Int = 0
-    var exercisePlan = List()
+    var exercisePlan= mutableListOf<String>()
 
     fun Fitness() {
 

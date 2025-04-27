@@ -10,17 +10,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -64,16 +69,19 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.ui.text.font.FontWeight
 import com.github.ldcdorn.haelth.ui.theme.HaelthTheme
 import com.github.ldcdorn.haelth.viewmodel.MainViewModel
 import com.github.ldcdorn.haelth.R
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.lazy.items
+import com.github.ldcdorn.haelth.data.Meal
 
 class MainActivity : ComponentActivity() {
     //Variablen für Nutrition
-    data class Meal(var name: String, var calories: Int, var carbs: Int, var fats: Int, var protein: Int)
     data class Goals(val caloriesGoal: Int, val carbsGoal: Int, val fatsGoal: Int, val proteinGoal: Int)
     val testGoals = Goals(3000,300,80,140)
 
@@ -116,7 +124,32 @@ class MainActivity : ComponentActivity() {
         }
     }
     @Composable
+    fun DailyMealsLazyList(
+        meals: List<Meal>,
+        onMealClick: (Meal) -> Unit
+    ) {
+        LazyColumn(
+            contentPadding = PaddingValues(vertical = 8.dp),
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(meals) { meal: Meal ->  // Hier explizit den Typ als Meal angeben
+                DailyMealsCard(
+                    dateText = meal.name,
+                    onClick = { onMealClick(meal) }
+                )
+            }
+        }
+
+    }
+
+    @Composable
     fun NutritionScreen() {
+        val meals = listOf(
+            Meal("Meal 1", 500, 50, 20, 30),
+            Meal("Meal 2", 600, 60, 25, 35),
+            Meal("Meal 3", 450, 45, 18, 28)
+        )
+
         Column(modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp), // Abstand zu den Bildschirmrändern
@@ -125,9 +158,12 @@ class MainActivity : ComponentActivity() {
         ){
             DailyGoalsCard(2000, 250, 60, 120)
             Spacer(modifier = Modifier.weight(1f))
-            DailyMealsCard()
-            DailyMealsCard()
-            DailyMealsCard()
+            DailyMealsLazyList(
+                meals = meals,
+                onMealClick = { clickedMeal ->
+                    println("Clicked on ${clickedMeal.name}")
+                }
+            )
         }}
 
     @Preview(showBackground = true)
@@ -217,53 +253,59 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun DailyMealsCard(modifier: Modifier = Modifier) {
-        Spacer(modifier = modifier.size(20.dp))
-        FloatingActionButton(
-            onClick = { },
-            containerColor = Color(0xffece6f0),
+    fun DailyMealsCard(
+        dateText: String,
+        onClick: () -> Unit,
+        modifier: Modifier = Modifier
+    ) {
+        Card(
+            onClick = onClick,
+            colors = CardDefaults.cardColors(
+                containerColor = Color(0xffece6f0)
+            ),
+            shape = RoundedCornerShape(12.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .height(72.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start,
                 modifier = Modifier
-                    .requiredWidth(width = 361.dp)
-                    .requiredHeight(height = 56.dp)
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp)
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(start = 16.dp,
-                            end = 20.dp,
-                            top = 16.dp,
-                            bottom = 16.dp)
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.icon_edit),
-                        contentDescription = "Icon",
-                        tint = Color(0xff65558f))
-                    Text(
-                        text = "Meals on 09/14/2024",
-                        color = Color(0xff65558f),
-                        textAlign = TextAlign.Center,
-                        lineHeight = 1.43.em,
-                        style = MaterialTheme.typography.labelLarge,
-                        modifier = Modifier
-                            .wrapContentHeight(align = Alignment.CenterVertically))
-                }
+                Icon(
+                    painter = painterResource(id = R.drawable.icon_edit),
+                    contentDescription = "Edit Meal Icon",
+                    tint = Color(0xff65558f),
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(
+                    text = dateText,
+                    style = MaterialTheme.typography.bodyLarge.copy(color = Color(0xff65558f))
+                )
             }
         }
     }
 
 
 
-    @Preview(widthDp = 361, heightDp = 56)
+    @Preview(showBackground = true, widthDp = 400)
     @Composable
     private fun DailyMealsCardPreview() {
-        DailyMealsCard(Modifier)
+        HaelthTheme {
+            DailyMealsCard(
+                dateText = "Meals on 09/14/2024",
+                onClick = { /* TODO: Preview Click */ }
+            )
+        }
     }
+
+
     @Composable
     @Preview
     fun PreviewDailyGoalsCard(){

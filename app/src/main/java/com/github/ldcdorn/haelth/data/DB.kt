@@ -1,6 +1,6 @@
 class DB {
-    val path: String
-    var version: String
+    val path: String =""
+    var version: String =""
 
     fun DB() {
         // TODO
