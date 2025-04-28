@@ -192,3 +192,22 @@ This diagram shows the sequence for a user adding a meal:
 - The App GUI displays a success message to the user.
 
 Summary: This diagram reflects the user-driven action of logging a meal, passing through the application layers, and storing it in the database.
+
+
+
+# 12. Glossary
+
+| Term | Definition |
+| :--- | :--- |
+| **MVVM** | Model-View-ViewModel. An architectural pattern that separates the user interface (View), the underlying data (Model), and the logic that connects them (ViewModel). |
+| **Jetpack Compose** | Android's modern toolkit for building native UI. It uses a declarative programming model and is tightly integrated with Kotlin. |
+| **Material Design** | A design system developed by Google that provides guidelines for visual, motion, and interaction design across platforms and devices. |
+| **Room** | A persistence library from Android Jetpack that provides an abstraction layer over SQLite to allow robust database access. |
+| **DataStore** | A Jetpack library for storing key-value pairs or typed objects, intended to replace SharedPreferences. |
+| **Scoped Storage** | Android’s mechanism to limit app access to external storage for greater privacy and security. Introduced starting Android 10. |
+| **Retrofit** | A type-safe HTTP client for Android and Java, used to simplify the consumption of REST APIs. |
+| **On-Device Storage** | All application data is saved locally on the device, with no automatic cloud synchronization or external backup without user consent. |
+| **Open Formats** | Data formats that are not proprietary and can be read, edited, or exported using standard tools (e.g., JSON, CSV). |
+| **Opt-in Networking** | Network features that are disabled by default and only enabled after explicit user consent. |
+| **Fitness Tracking** | Monitoring and recording of health-related metrics, such as step counts, heart rate, exercise duration, and sleep patterns. |
+| **Mindfulness / Meditation Feature** | A module providing motivational quotes and meditation exercises, partially sourced from external databases. |
