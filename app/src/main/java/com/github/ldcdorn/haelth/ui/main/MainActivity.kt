@@ -81,7 +81,7 @@ import androidx.compose.foundation.lazy.items
 import com.github.ldcdorn.haelth.data.Meal
 
 class MainActivity : ComponentActivity() {
-    //Variablen für Nutrition
+    //Variables for Nutrition
     data class Goals(val caloriesGoal: Int, val carbsGoal: Int, val fatsGoal: Int, val proteinGoal: Int)
     val testGoals = Goals(3000,300,80,140)
 
@@ -132,7 +132,7 @@ class MainActivity : ComponentActivity() {
             contentPadding = PaddingValues(vertical = 8.dp),
             modifier = Modifier.fillMaxSize()
         ) {
-            items(meals) { meal: Meal ->  // Hier explizit den Typ als Meal angeben
+            items(meals) { meal: Meal ->  // Explicitly mark type as meal
                 DailyMealsCard(
                     dateText = meal.name,
                     onClick = { onMealClick(meal) }
