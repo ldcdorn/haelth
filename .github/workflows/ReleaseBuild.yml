@@ -1,4 +1,4 @@
-name: Haelth Release Build
+name: Haelth Build & Test Release
 
 on:
   workflow_dispatch:
