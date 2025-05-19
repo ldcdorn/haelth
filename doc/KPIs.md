@@ -15,5 +15,4 @@
 **Formula**: `(Number of completed goals / Total number of goals) * 100`  
 **Why it matters**: Tracks progress and motivation by showing how well users are meeting their health objectives.
 
----
-*Last updated: May 19, 2025*
+
