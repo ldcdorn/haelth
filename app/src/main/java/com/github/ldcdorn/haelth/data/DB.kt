@@ -43,14 +43,15 @@ class DB {
         context.openFileInput(filename).bufferedReader().useLines { lines ->
             lines.forEachIndexed { index, line ->
                 val parts = line.split(";")
-                if (parts.size == 5) {
+                if (parts.size == 6) {
                     try {
                         val exercise = Exercise(
                             name   = parts[0],
                             type   = parts[1],
-                            weight = parts[2].toInt(),
-                            amount = parts[3].toInt(),
-                            date   = Date.valueOf(parts[4])
+                            sets = parts[2].toInt(),
+                            reps = parts[3].toInt(),
+                            weight = parts[4].toInt(),
+                            date   = Date.valueOf(parts[5])
                         )
                         exercises.add(exercise)
                     } catch (e: Exception) {
@@ -63,6 +64,16 @@ class DB {
         Log.d("DB", "Loaded Exercises: ${exercises.size}")
         return exercises
     }
+
+    fun deleteExercise(context: Context, exerciseString: String) {
+        val file = File(context.filesDir, "exercise-log.txt")
+        if (!file.exists()) return
+
+        val targetLine = exerciseString
+        val lines = file.readLines().filter { it != targetLine }
+        file.writeText(lines.joinToString("\n"))
+    }
+
 
 
     fun saveMealToFile(context: Context, meal: Meal) {
