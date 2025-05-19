@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.material3)
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.8.4")
+    implementation(libs.androidx.compiler)
 
     // Test-Abhängigkeiten
     testImplementation(libs.junit)
@@ -71,3 +72,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+configurations.all {
+    resolutionStrategy {
+        force("com.google.guava:guava:32.0.1-jre")
+        force("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
+    }
+}
+

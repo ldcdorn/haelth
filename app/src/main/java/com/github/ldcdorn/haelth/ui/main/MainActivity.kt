@@ -2,6 +2,7 @@ package com.github.ldcdorn.haelth.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -79,11 +80,15 @@ import com.github.ldcdorn.haelth.R
 import kotlinx.coroutines.delay
 import androidx.compose.foundation.lazy.items
 import com.github.ldcdorn.haelth.data.Meal
+import com.github.ldcdorn.haelth.ui.nutrition.NutritionUI
+import com.github.ldcdorn.haelth.ui.fitness.FitnessUI
+import com.github.ldcdorn.haelth.ui.mindfulness.MindfulnessUI
 
 class MainActivity : ComponentActivity() {
-    //Variables for Nutrition
-    data class Goals(val caloriesGoal: Int, val carbsGoal: Int, val fatsGoal: Int, val proteinGoal: Int)
-    val testGoals = Goals(3000,300,80,140)
+
+    private val nutritionUI = NutritionUI();
+    private val fitnessUI = FitnessUI();
+    private val mindfulnessUI = MindfulnessUI();
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +104,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MainScreen(viewModel: MainViewModel) {
         val navController = rememberNavController()
+        val context = LocalContext.current
         Spacer(modifier = Modifier.size(24.dp))
         Scaffold(
             bottomBar = {
@@ -106,7 +112,7 @@ class MainActivity : ComponentActivity() {
             },
             topBar = {
                 Box(
-                    modifier = Modifier.padding(top = 20.dp) // Verschiebe die TopBar leicht nach unten
+                    modifier = Modifier.padding(top = 20.dp)
                 ) {
                     TopLabel(Modifier)
                 }
@@ -117,232 +123,23 @@ class MainActivity : ComponentActivity() {
                 startDestination = "exercise",
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable("exercise") { ExerciseScreen() }
-                composable("nutrition") { NutritionScreen() }
-                composable("mindfulness") { MindfulnessScreen() }
-            }
-        }
-    }
-    @Composable
-    fun DailyMealsLazyList(
-        meals: List<Meal>,
-        onMealClick: (Meal) -> Unit
-    ) {
-        LazyColumn(
-            contentPadding = PaddingValues(vertical = 8.dp),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(meals) { meal: Meal ->  // Explicitly mark type as meal
-                DailyMealsCard(
-                    dateText = meal.name,
-                    onClick = { onMealClick(meal) }
-                )
-            }
-        }
-
-    }
-
-    @Composable
-    fun NutritionScreen() {
-        val meals = listOf(
-            Meal("Meal 1", 500, 50, 20, 30),
-            Meal("Meal 2", 600, 60, 25, 35),
-            Meal("Meal 3", 450, 45, 18, 28)
-        )
-
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp), // Abstand zu den Bildschirmrändern
-            //verticalArrangement = Arrangement.spacedBy(2.dp), // Abstand zwischen den Elementen)
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            DailyGoalsCard(2000, 250, 60, 120)
-            Spacer(modifier = Modifier.weight(1f))
-            DailyMealsLazyList(
-                meals = meals,
-                onMealClick = { clickedMeal ->
-                    println("Clicked on ${clickedMeal.name}")
-                }
-            )
-        }}
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewNutritionScreen() {
-        HaelthTheme {
-            NutritionScreen()
-        }
-    }
-
-    @Composable
-    fun DailyGoalsCard(calories: Int, carbs: Int, fats: Int, protein: Int) {
-        val caloriesFloat = calories.toFloat()
-        val carbsFloat = carbs.toFloat()
-        val fatsFloat = fats.toFloat()
-        val proteinFloat = protein.toFloat()
-        val remainingCaloriesFloat = testGoals.caloriesGoal - caloriesFloat
-        val remainingFatsFloat = testGoals.fatsGoal - fatsFloat
-        val remainingCarbsFloat = testGoals.carbsGoal - carbsFloat
-        val remainingProteinFloat = testGoals.proteinGoal - proteinFloat
-
-
-        Row(modifier = Modifier
-            .padding(20.dp),
-            horizontalArrangement = Arrangement.Center,
-            //verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            NutritionGoalPieChart(
-                data = mapOf(
-                    "Erreicht" to caloriesFloat,
-                    "Übrig" to remainingCaloriesFloat,
-                ),
-                colors = listOf(MaterialTheme.colorScheme.primary,MaterialTheme.colorScheme.primaryContainer,   Color.Green, Color.Yellow),
-                modifier = Modifier.size(200.dp)
-            )
-            Spacer(modifier = Modifier.size(20.dp))
-
-            Column() {
-
-
-                NutritionGoalPieChart(
-                    data = mapOf(
-                        "Erreicht" to carbsFloat,
-                        "Übrig" to remainingCarbsFloat,
-                    ),
-                    colors = listOf(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.primaryContainer,
-                        Color.Green,
-                        Color.Yellow
-                    ),
-                    modifier = (Modifier.size(60.dp)
-                            )
-                )
-                Spacer(modifier = Modifier.size(10.dp))
-                NutritionGoalPieChart(
-                    data = mapOf(
-                        "Erreicht" to fatsFloat,
-                        "Übrig" to remainingFatsFloat,
-                    ),
-                    colors = listOf(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.primaryContainer,
-                        Color.Green,
-                        Color.Yellow
-                    ),
-                    modifier = Modifier.size(60.dp)
-                )
-                Spacer(modifier = Modifier.size(10.dp))
-                NutritionGoalPieChart(
-                    data = mapOf(
-                        "Erreicht" to proteinFloat,
-                        "Übrig" to remainingProteinFloat,
-                    ),
-                    colors = listOf(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.primaryContainer,
-                        Color.Green,
-                        Color.Yellow
-                    ),
-                    modifier = Modifier.size(60.dp)
-                )
-            }
-
-        }
-    }
-
-    @Composable
-    fun DailyMealsCard(
-        dateText: String,
-        onClick: () -> Unit,
-        modifier: Modifier = Modifier
-    ) {
-        Card(
-            onClick = onClick,
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xffece6f0)
-            ),
-            shape = RoundedCornerShape(12.dp),
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-                .height(72.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp)
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.icon_edit),
-                    contentDescription = "Edit Meal Icon",
-                    tint = Color(0xff65558f),
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    text = dateText,
-                    style = MaterialTheme.typography.bodyLarge.copy(color = Color(0xff65558f))
-                )
+                composable("exercise") { fitnessUI.ExerciseScreen(context, onCardClick = { dateString ->
+                    Toast.makeText(context, "Card clicked $dateString", Toast.LENGTH_SHORT).show()
+                }) }
+                composable("nutrition") { nutritionUI.NutritionScreen() }
+                composable("mindfulness") { mindfulnessUI.MindfulnessScreen() }
             }
         }
     }
 
 
 
-    @Preview(showBackground = true, widthDp = 400)
-    @Composable
-    private fun DailyMealsCardPreview() {
-        HaelthTheme {
-            DailyMealsCard(
-                dateText = "Meals on 09/14/2024",
-                onClick = { /* TODO: Preview Click */ }
-            )
-        }
-    }
-
-
-    @Composable
-    @Preview
-    fun PreviewDailyGoalsCard(){
-        DailyGoalsCard(2000,250,60,120)
-    }
-    @Composable
-    fun NutritionGoalPieChart(
-        data: Map<String, Float>, // Key: Label, Value: Percentage
-        colors: List<Color>,
-        modifier: Modifier = Modifier
-    ) {
-        var actualSize: IntSize = IntSize(0, 0)
-        val total = data.values.sum()
-        val proportions = data.values.map { it / total }
-        val angles = proportions.map { it * 360f }
 
 
 
-        Canvas(modifier = modifier
-            .onSizeChanged { newSize -> actualSize = newSize }) {
-            var startAngle = -90f
-            angles.forEachIndexed { index, angle ->
-                drawArc(
-                    color = colors[index % colors.size],
-                    startAngle = startAngle,
-                    sweepAngle = angle,
-                    useCenter = false,
-                    style = Stroke(
-                        width = actualSize.width*0.11f,
-                        cap = StrokeCap.Butt,
-                        join = StrokeJoin.Round
-                    )
-                )
-                startAngle += angle
-            }
-        }
-    }
+
+
+
 
     @Composable
     fun NavigationBar(navController: NavHostController, viewModel: MainViewModel) {
@@ -394,163 +191,10 @@ class MainActivity : ComponentActivity() {
             )
         }
     }
-    @Composable
-    fun ExerciseScreen() {
-        Text("Exercise Screen Content")
-    }
 
 
 
-    @Composable
-    fun MindfulnessScreen() {
-        val sliderValue = remember { mutableStateOf(5f) } // Slider value in minutes (5 to 15 minutes)
-        val timerLength = remember { mutableStateOf((sliderValue.value * 60).toInt()) } // Start with 5 minutes (300 seconds)
-        val seconds = remember { mutableStateOf(timerLength.value) } // Current time in seconds for countdown
-        val isRunning = remember { mutableStateOf(false) }
-        val progress = remember { mutableStateOf(1f) } // Progress of the circular timer (1 = 100%)
 
-        // Update timerLength and reset seconds immediately when slider changes
-        LaunchedEffect(sliderValue.value) {
-            timerLength.value = (sliderValue.value.toInt()) * 60 // Convert minutes to seconds, round to full minute
-            seconds.value = timerLength.value // Reset the countdown to the new value
-        }
-
-        // Update the progress of the timer based on the remaining time
-        LaunchedEffect(seconds.value) {
-            progress.value = seconds.value / timerLength.value.toFloat() // Update progress based on the remaining seconds
-        }
-
-        // The main timer logic (reset when starting)
-        LaunchedEffect(isRunning.value) {
-            if (isRunning.value) {
-                while (seconds.value > 0) {
-                    delay(1000L)
-                    seconds.value-- // Decrease the time by 1 second
-                }
-                isRunning.value = false // Stop the timer when seconds reach 0
-            }
-        }
-
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // Mindfulness Tips at the Top
-            Text(
-                text = "Tips for Better Mindfulness",
-                style = MaterialTheme.typography.displayMedium.copy(fontSize = 24.sp),
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-
-            Text(
-                text = """
-            - Take deep breaths.
-            - Focus on the present moment.
-            - Let go of distractions.
-            - Practice gratitude daily.
-            - Stay calm, even in stressful situations.
-        """.trimIndent(),
-                style = MaterialTheme.typography.bodyMedium.copy(fontSize = 16.sp),
-                modifier = Modifier.padding(bottom = 32.dp)
-            )
-
-            // Set Timer Length Label (Make this bigger)
-            Text(
-                text = "Set Timer Length: ${sliderValue.value.toInt()} min",
-                style = MaterialTheme.typography.displayMedium.copy(fontSize = 28.sp),
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-
-            // Slider for adjusting meditation timer length (5 to 15 minutes)
-            TimerLengthSlider(sliderValue.value) { newValue ->
-                sliderValue.value = newValue
-            }
-
-            // Meditation Timer
-            MeditationTimer(timerLength.value, sliderValue.value, seconds.value, progress.value, isRunning.value) { isRunningState ->
-                isRunning.value = isRunningState
-                if (!isRunningState) {
-                    seconds.value = timerLength.value // Reset the timer when stopped
-                }
-            }
-        }
-    }
-
-    @Composable
-    fun TimerLengthSlider(sliderValue: Float, onSliderValueChange: (Float) -> Unit) {
-        Slider(
-            value = sliderValue,
-            onValueChange = onSliderValueChange,
-            valueRange = 5f..15f, // Slider range between 5 and 15 minutes
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        )
-    }
-
-    @Composable
-    fun MeditationTimer(
-        timerLength: Int,
-        sliderValue: Float,
-        seconds: Int,
-        progress: Float,
-        isRunning: Boolean,
-        onStartStopClicked: (Boolean) -> Unit
-    ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            // Circular progress bar (time countdown)
-            Box(
-                modifier = Modifier
-                    .size(200.dp) // Size of the circular progress
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(
-                    progress = progress.coerceIn(0f, 1f), // Ensure the progress value is between 0 and 1
-                    strokeWidth = 16.dp,
-                    modifier = Modifier.fillMaxSize()
-                )
-                Text(
-                    text = String.format("%02d:%02d", seconds / 60, seconds % 60),
-                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 48.sp),
-                )
-            }
-
-            // Start/Stop button with modern design
-            Button(
-                onClick = {
-                    // Start/Pause-Logik
-                    if (isRunning) {
-                        onStartStopClicked(false)
-                    } else {
-                        onStartStopClicked(true)
-                    }
-                },
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                shape = CircleShape,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary // Verwendung von colorScheme
-                )
-            ) {
-                Text(
-                    text = if (isRunning) "Reset" else "Start",
-                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 18.sp),
-                    color = MaterialTheme.colorScheme.onPrimary // Verwendung von onPrimary aus colorScheme
-                )
-            }
-        }
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun MeditationPagePreview() {
-        MindfulnessScreen()
-    }
 
     @Composable
     fun TopLabel(modifier: Modifier = Modifier) {
