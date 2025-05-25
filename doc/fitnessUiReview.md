@@ -2,13 +2,13 @@
 
 ## 1. Date
 - **Date:** 2025-05-25
-- **Start Time:** 10:20
-- **End Time:** 10:30
+- **Start Time:** 10:00
+- **End Time:** 11:00
 
 ## 2. Participants
-- **Moderator/Timekeeper:** [Name], Project Team Member
-- **Note Taker:** [Name], Project Team Member
-- **External Reviewer:** [Name], [Role/Organization] (invited for external perspective)
+- **Moderator/Timekeeper:** Omar, Project Team Member
+- **Note Taker:** Jan , Project Team Member
+- **External Reviewer:** Lena 
 
 ## 3. Purpose/Focus of the Review
 We selected the `FitnessUI.kt` file for review because it implements the fitness tracking UI, which is a core feature of our application and involves Jetpack Compose best practices, state management, and file I/O. Ensuring maintainability, performance, and code quality in this module is critical for the user experience and future extensibility.
