@@ -1,5 +1,6 @@
 package com.github.ldcdorn.haelth.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -123,9 +124,9 @@ class MainActivity : ComponentActivity() {
                 startDestination = "exercise",
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable("exercise") { fitnessUI.ExerciseScreen(context, onCardClick = { dateString ->
-                    Toast.makeText(context, "Card clicked $dateString", Toast.LENGTH_SHORT).show()
-                }) }
+                composable("exercise") { fitnessUI.ExerciseScreen(context = context) }/*context, onCardClick = { dateString ->
+                Toast.makeText(context, "Card clicked $dateString", Toast.LENGTH_SHORT).show()}*/
+
                 composable("nutrition") { nutritionUI.NutritionScreen() }
                 composable("mindfulness") { mindfulnessUI.MindfulnessScreen() }
             }
