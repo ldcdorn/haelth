@@ -1,3 +1,50 @@
+# Code Review Meeting Protocol: FitnessUI.kt
+
+## 1. Date
+- **Date:** 2025-05-25
+- **Start Time:** 10:20
+- **End Time:** 10:30
+
+## 2. Participants
+- **Moderator/Timekeeper:** [Name], Project Team Member
+- **Note Taker:** [Name], Project Team Member
+- **External Reviewer:** [Name], [Role/Organization] (invited for external perspective)
+
+## 3. Purpose/Focus of the Review
+We selected the `FitnessUI.kt` file for review because it implements the fitness tracking UI, which is a core feature of our application and involves Jetpack Compose best practices, state management, and file I/O. Ensuring maintainability, performance, and code quality in this module is critical for the user experience and future extensibility.
+
+## 4. Components Under Review
+- `FitnessUI.kt` (Jetpack Compose UI components for fitness tracking)
+
+## 5. Review Criteria
+- **Code Quality:** Clarity, structure, use of best practices
+- **Performance:** Efficient state and file management
+- **Maintainability:** Readability, modularity, and documentation
+- **Scalability:** Readiness for future features
+- **Localization:** Avoidance of hardcoded strings
+- **Error Handling:** Robustness in file and UI operations
+
+## 6. Review Methodology
+- Formal code review meeting (walkthrough and discussion)
+- Each participant provided feedback based on the criteria above
+- Action items and best practices were documented
+
+## 7. Results of the Session
+- **Action Items:**
+    - Refactor to use `object` or top-level functions for stateless composables (Responsible: [Name], Due: 2025-06-01)
+    - Replace hardcoded strings with string resources (Responsible: [Name], Due: 2025-06-01)
+    - Migrate file I/O to coroutines for non-blocking operations (Responsible: [Name], Due: 2025-06-01)
+    - Add KDoc documentation to all public composables (Responsible: [Name], Due: 2025-06-01)
+- **Best Practices:**
+    - Use modern date/time APIs
+    - Organize imports and remove duplicates
+    - Enable and use preview annotations for UI development
+- **Lessons Learned:**
+    - Early code reviews help catch architectural and maintainability issues
+    - Involving an external reviewer brings valuable new perspectives
+
+---
+
 # Code Review: FitnessUI.kt
 
 ## Overview
