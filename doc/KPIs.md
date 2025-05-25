@@ -30,6 +30,4 @@
 **Target**: < 10%  
 **Why it matters**: Helps maintain code quality and prevent accumulation of technical debt.
 
----
-*Last updated: May 19, 2025*
-*Next review: Quarterly*
+
