@@ -10,7 +10,7 @@ import java.io.File
 
 class DB {
     val path: String =""
-    var version: String ="1.0"
+    var version: String ="1.1"
 
     fun checkIntegrity() {
         // TODO
@@ -76,46 +76,64 @@ class DB {
 
 
 
-    fun saveMealToFile(context: Context, meal: Meal) {
-        val filename = "meals.txt"
+    fun saveMealToFile(context: Context, mealText: String) {
+        val filename = "nutrition-log.txt"
         try {
             context.openFileOutput(filename, Context.MODE_APPEND).use { output ->
-                output.write((meal.toString() + "\n").toByteArray())
+                output.write((mealText + "\n").toByteArray())
             }
             Toast.makeText(context, "Meal saved!", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Toast.makeText(context, "Error saving: ${e.message}", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
         }
     }
 
-
-    fun readMealsFromFile(context: Context): List<Meal> {
-        val filename = "meals.txt"
+    fun loadMeals(context: Context): List<Meal> {
         val meals = mutableListOf<Meal>()
+        val filename = "nutrition-log.txt"
+        val file = File(context.filesDir, filename)
 
-        try {
-            context.openFileInput(filename).bufferedReader().useLines { lines ->
-                lines.forEach { line ->
-                    val parts = line.split(";")
-                    if (parts.size == 6) {
+        Log.d("DB", "loadMeals: Path = ${file.absolutePath}")
+        if (!file.exists()) {
+            Log.d("DB", "File does not exist yet.")
+            return meals
+        }
+
+        context.openFileInput(filename).bufferedReader().useLines { lines ->
+            lines.forEachIndexed { index, line ->
+                val parts = line.split(";")
+                if (parts.size == 6) {
+                    try {
                         val meal = Meal(
-                            name = parts[0],
-                            calories = parts[1].toInt(),
+                            name   = parts[0],
+                            calories   = parts[1].toInt(),
                             carbs = parts[2].toInt(),
-                            fats = parts[3].toInt(),
-                            protein = parts[4].toInt(),
-                            date = Date.valueOf(parts[5]) // expects yyyy-MM-dd
+                            protein = parts[3].toInt(),
+                            fats = parts[4].toInt(),
+                            date   = Date.valueOf(parts[5])
                         )
                         meals.add(meal)
+                    } catch (e: Exception) {
+                        Log.e("DB", "Parsing-Error in line $index", e)
                     }
                 }
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
 
+        Log.d("DB", "Loaded Meals: ${meals.size}")
         return meals
     }
+
+    fun deleteMeal(context: Context, mealString: String) {
+        val file = File(context.filesDir, "nutrition-log.txt")
+        if (!file.exists()) return
+
+        val targetLine = mealString
+        val lines = file.readLines().filter { it != targetLine }
+        file.writeText(lines.joinToString("\n"))
+    }
+
 
 
 

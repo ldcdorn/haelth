@@ -127,7 +127,7 @@ class MainActivity : ComponentActivity() {
                 composable("exercise") { fitnessUI.ExerciseScreen(context = context) }/*context, onCardClick = { dateString ->
                 Toast.makeText(context, "Card clicked $dateString", Toast.LENGTH_SHORT).show()}*/
 
-                composable("nutrition") { nutritionUI.NutritionScreen() }
+                composable("nutrition") { nutritionUI.NutritionScreen(context = context) }
                 composable("mindfulness") { mindfulnessUI.MindfulnessScreen() }
             }
         }

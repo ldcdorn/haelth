@@ -1,9 +1,7 @@
 package com.github.ldcdorn.haelth.ui.fitness
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,40 +22,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.StrokeJoin
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntSize
 import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.unit.dp
 import com.github.ldcdorn.haelth.R
-import com.github.ldcdorn.haelth.data.Meal
 import com.github.ldcdorn.haelth.ui.theme.HaelthTheme
 import com.github.ldcdorn.haelth.model.Fitness
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import com.github.ldcdorn.haelth.data.Exercise
-import com.github.ldcdorn.haelth.data.Workout
 import java.io.File
 import java.text.SimpleDateFormat
 import java.sql.Date
@@ -255,7 +241,7 @@ class FitnessUI {
                     .padding(16.dp)
                     .align(Alignment.CenterHorizontally)
             ) {
-                Text("Add Exercise")
+                Text("Add Exercise for today")
             }
         }
         if (showOverlay) {
@@ -316,32 +302,6 @@ class FitnessUI {
                         .padding(vertical = 4.dp)
                 )
             }
-        }
-    }
-
-    @Composable
-    fun TrainingLogTestScreen(
-        context: Context,
-        onNewEntryAdded: () -> Unit
-    ) {
-        var message by remember { mutableStateOf("") }
-
-        Button(onClick = {
-            try {
-                val file = File(context.filesDir, "exercise-log.txt")
-                val eintrag = "Testexercise;Testtype;30;10;2025-05-19"
-                file.appendText("$eintrag\n")
-                message = "Entry added!"
-                onNewEntryAdded()
-            } catch (e: Exception) {
-                message = "Error: ${e.localizedMessage}"
-            }
-        }) {
-            Text("Add test entry")
-        }
-
-        if (message.isNotEmpty()) {
-            Text(text = message)
         }
     }
 
