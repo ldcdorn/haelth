@@ -3,6 +3,7 @@ package com.github.ldcdorn.haelth.ui.nutrition
 import Nutrition
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -54,10 +54,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.github.ldcdorn.haelth.R
-import com.github.ldcdorn.haelth.data.Meal
 import com.github.ldcdorn.haelth.ui.theme.HaelthTheme
+import com.github.ldcdorn.haelth.util.UtilFunctions
 import java.io.File
-import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -65,6 +64,7 @@ import java.util.Locale
 class NutritionUI {
 
     private val nutrition = Nutrition()
+    private val util = UtilFunctions()
     data class Goals(val caloriesGoal: Int, val carbsGoal: Int, val fatsGoal: Int, val proteinGoal: Int)
     val testGoals = Goals(3000,300,80,140)
 
@@ -77,10 +77,23 @@ class NutritionUI {
         var showOverlay by remember { mutableStateOf(false) }
         var expandedNutritionDate by remember { mutableStateOf<String?>(null) }
         var nutritions = remember { mutableStateOf(nutrition.getDailyNutritions(context)) }
+        var refreshTrigger by remember { mutableStateOf(0) }
+        var summary by remember(refreshTrigger) {
+            mutableStateOf(nutrition.getTodayNutritionSummaryAsArray(context))
+        }
 
-        Column(modifier = Modifier.fillMaxSize()) {
 
+        Column(modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
 
+            DailyGoalsCard(
+                calories = summary[0],
+                carbs = summary[1],
+                fats = summary[2],
+                protein = summary[3]
+            )
             LazyColumn(
                 modifier = Modifier
                     .weight(1f)
@@ -137,19 +150,29 @@ class NutritionUI {
                 },
                 onDismiss = { showOverlay = false },
                 onConfirm = { name, calories, carbs, fats, protein ->
+
                     try {
                         val file = File(context.filesDir, "nutrition-log.txt")
                         val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(java.util.Date())
-                        val entry = "$name;$calories;$carbs;$fats;$protein;$today"
+                        var caloriesChecked = "0"
+                        if(calories=="0"){
+                            val temp = util.calculateCalories(protein = protein, carbs = carbs, fat = fats)
+                            caloriesChecked = temp.toString();
+                        }else{
+                            caloriesChecked = calories
+                        }
+                        val entry = "$name;$caloriesChecked;$carbs;$fats;$protein;$today"
                         file.appendText("$entry\n")
                         message = "Entry added!"
                         nutritions.value = nutrition.getDailyNutritions(context)
+                        Toast.makeText(context, "Meal added", Toast.LENGTH_SHORT).show()
+
                     } catch (e: Exception) {
                         message = "Error: ${e.localizedMessage}"
                     }
-                    Log.d("Overlay", "Meal added: $name, $calories, $carbs, $fats, $protein")
-
+                    refreshTrigger++
                     showOverlay = false
+
                 }
             )
         }
@@ -277,25 +300,6 @@ class NutritionUI {
     }
 
     @Composable
-    fun DailyMealsLazyList(
-        meals: List<Meal>,
-        onMealClick: (Meal) -> Unit
-    ) {
-        LazyColumn(
-            contentPadding = PaddingValues(vertical = 8.dp),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(meals) { meal: Meal ->  // Explicitly mark type as meal
-                DailyMealsCard(
-                    dateText = meal.name,
-                    onClick = { onMealClick(meal) }
-                )
-            }
-        }
-
-    }
-
-    @Composable
     fun MealCard(
         name: String,
         calories: Int,
@@ -382,8 +386,9 @@ class NutritionUI {
                     "Erreicht" to caloriesFloat,
                     "Übrig" to remainingCaloriesFloat,
                 ),
-                colors = listOf(MaterialTheme.colorScheme.primary,MaterialTheme.colorScheme.primaryContainer,   Color.Green, Color.Yellow),
-                modifier = Modifier.size(200.dp)
+                colors = listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.primaryContainer),
+                modifier = Modifier.size(200.dp),
+                centerText = "Calories: $calories / ${testGoals.caloriesGoal}"
             )
             Spacer(modifier = Modifier.size(20.dp))
 
@@ -401,6 +406,7 @@ class NutritionUI {
                         Color.Green,
                         Color.Yellow
                     ),
+                    centerText = "Carbs",
                     modifier = (Modifier.size(60.dp)
                             )
                 )
@@ -416,6 +422,7 @@ class NutritionUI {
                         Color.Green,
                         Color.Yellow
                     ),
+                    centerText = "Fats",
                     modifier = Modifier.size(60.dp)
                 )
                 Spacer(modifier = Modifier.size(10.dp))
@@ -430,6 +437,7 @@ class NutritionUI {
                         Color.Green,
                         Color.Yellow
                     ),
+                    centerText = "Proteins",
                     modifier = Modifier.size(60.dp)
                 )
             }
@@ -447,35 +455,55 @@ class NutritionUI {
     }
     @Composable
     fun NutritionGoalPieChart(
-        data: Map<String, Float>, // Key: Label, Value: Percentage
+        data: Map<String, Float>,
         colors: List<Color>,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
+        centerText: String = ""
     ) {
-        var actualSize: IntSize = IntSize(0, 0)
-        val total = data.values.sum()
+        var actualSize: IntSize by remember { mutableStateOf(IntSize.Zero) }
+        val total = data.values.sum().takeIf { it != 0f } ?: 1f
         val proportions = data.values.map { it / total }
         val angles = proportions.map { it * 360f }
 
-
-
-        Canvas(modifier = modifier
-            .onSizeChanged { newSize -> actualSize = newSize }) {
-            var startAngle = -90f
-            angles.forEachIndexed { index, angle ->
-                drawArc(
-                    color = colors[index % colors.size],
-                    startAngle = startAngle,
-                    sweepAngle = angle,
-                    useCenter = false,
-                    style = Stroke(
-                        width = actualSize.width*0.11f,
-                        cap = StrokeCap.Butt,
-                        join = StrokeJoin.Round
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
+            Canvas(modifier = Modifier
+                .fillMaxSize()
+                .onSizeChanged { newSize -> actualSize = newSize }) {
+                var startAngle = -90f
+                angles.forEachIndexed { index, angle ->
+                    drawArc(
+                        color = colors[index % colors.size],
+                        startAngle = startAngle,
+                        sweepAngle = angle,
+                        useCenter = false,
+                        style = Stroke(
+                            width = actualSize.width * 0.11f,
+                            cap = StrokeCap.Butt,
+                            join = StrokeJoin.Round
+                        )
                     )
+                    startAngle += angle
+                }
+            }
+
+            if (centerText.isNotEmpty()) {
+                Text(
+                    text = centerText,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
-                startAngle += angle
             }
         }
+    }
+
+
+    @Preview
+    @Composable
+    fun NutritionGoalPieChart(){
+        NutritionGoalPieChart()
     }
     @Composable
     fun DailyMealsCard(
