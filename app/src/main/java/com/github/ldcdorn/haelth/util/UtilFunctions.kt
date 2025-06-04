@@ -5,7 +5,7 @@ package com.github.ldcdorn.haelth.util
 // wont be changed often
 class UtilFunctions {
 
-    public fun calculateCalories(protein: Int, carbs: Int, fat: Int): Int {
+    fun calculateCalories(protein: Int, carbs: Int, fat: Int): Int {
         return (protein * 4) + (carbs * 4) + (fat * 9)
     }
     fun calculateBMI(weightKg: Double, heightCm: Double): Double {
