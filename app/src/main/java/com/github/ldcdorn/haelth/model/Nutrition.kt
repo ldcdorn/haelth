@@ -2,6 +2,7 @@ import android.content.Context
 import com.github.ldcdorn.haelth.data.DB
 import com.github.ldcdorn.haelth.data.DailyNutrition
 import com.github.ldcdorn.haelth.data.Exercise
+import com.github.ldcdorn.haelth.data.Goals
 import com.github.ldcdorn.haelth.data.Meal
 import java.sql.Date
 import kotlin.collections.component1
@@ -35,6 +36,18 @@ class Nutrition {
     public fun deleteMealFromLog(context: Context, meal: Meal){
         db.deleteExercise(context, meal.toString())
 
+    }
+
+    public fun getGoals(context: Context): Goals{
+        val goalString = db.loadGoals(context)
+        val values = goalString.split(";").map { it.toInt() }
+
+        return Goals(
+            caloriesGoal = values[0],
+            carbsGoal = values[1],
+            fatsGoal = values[2],
+            proteinGoal = values[3]
+        )
     }
 
 
