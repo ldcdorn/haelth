@@ -56,6 +56,7 @@ import androidx.compose.ui.unit.dp
 import com.github.ldcdorn.haelth.R
 import com.github.ldcdorn.haelth.ui.theme.HaelthTheme
 import com.github.ldcdorn.haelth.util.UtilFunctions
+import com.github.ldcdorn.haelth.data.Goals
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -65,22 +66,24 @@ class NutritionUI {
 
     private val nutrition = Nutrition()
     private val util = UtilFunctions()
-    data class Goals(val caloriesGoal: Int, val carbsGoal: Int, val fatsGoal: Int, val proteinGoal: Int)
-    val testGoals = Goals(3000,300,80,140)
 
     @Composable
     fun NutritionScreen(context: Context) {
+
+
         var nutritionDates = remember { mutableStateOf(nutrition.getDailyNutritions(context)
             .map{it.date }
             .distinct().sortedDescending()) }
         val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.US)
         var showOverlay by remember { mutableStateOf(false) }
+        var showGoalOverlay by remember {mutableStateOf(false)}
         var expandedNutritionDate by remember { mutableStateOf<String?>(null) }
         var nutritions = remember { mutableStateOf(nutrition.getDailyNutritions(context)) }
         var refreshTrigger by remember { mutableStateOf(0) }
         var summary by remember(refreshTrigger) {
             mutableStateOf(nutrition.getTodayNutritionSummaryAsArray(context))
         }
+        var nutritionGoals = nutrition.getGoals(context)
 
 
         Column(modifier = Modifier.fillMaxSize(),
@@ -92,7 +95,8 @@ class NutritionUI {
                 calories = summary[0],
                 carbs = summary[1],
                 fats = summary[2],
-                protein = summary[3]
+                protein = summary[3],
+                nGoals = nutritionGoals
             )
             LazyColumn(
                 modifier = Modifier
@@ -129,13 +133,21 @@ class NutritionUI {
                     }
                 }
             }
-            Button(
-                onClick = { showOverlay = true },
-                modifier = Modifier
-                    .padding(16.dp)
-                    .align(Alignment.CenterHorizontally)
-            ) {
-                Text("Add Meal for today")
+            Row() {
+                Button(
+                    onClick = { showOverlay = true },
+                    modifier = Modifier
+                        .padding(16.dp)
+                ) {
+                    Text("Add Meal for today")
+                }
+                Button(
+                    onClick = { showGoalOverlay = true },
+                    modifier = Modifier
+                        .padding(16.dp)
+                ) {
+                    Text("Set Nutrition Goals")
+                }
             }
         }
         if (showOverlay) {
@@ -176,12 +188,51 @@ class NutritionUI {
                 }
             )
         }
+        if (showGoalOverlay) {
+            var message by remember { mutableStateOf("") }
+            SetGoalOverlay(
+                context = context,
+                onNewEntryAdded = {
+                    nutritionDates.value = nutrition.getDailyNutritions(context)
+                        .map{it.date }
+                        .distinct().sortedDescending()
+
+                },
+                onDismiss = { showGoalOverlay = false },
+                onConfirm = { calories, carbs, fats, protein ->
+
+                    try {
+                        val file = File(context.filesDir, "nutrition-goals.txt")
+                        var caloriesChecked = "0"
+                        if(calories=="0"){
+                            val temp = util.calculateCalories(protein = protein, carbs = carbs, fat = fats)
+                            caloriesChecked = temp.toString();
+                        }else{
+                            caloriesChecked = calories
+                        }
+                        val entry = "$caloriesChecked;$carbs;$fats;$protein"
+                        Log.d("DB","Writing goals: $entry")
+                        file.writeText(entry)
+                        message = "Goals set!"
+                        nutritions.value = nutrition.getDailyNutritions(context)
+                        Toast.makeText(context, "Goals set!", Toast.LENGTH_SHORT).show()
+
+                    } catch (e: Exception) {
+                        message = "Error: ${e.localizedMessage}"
+                    }
+                    refreshTrigger++
+                    showGoalOverlay = false
+
+                }
+            )
+        }
+
     }
 
     @Composable
     fun AddMealOverlay(
         onDismiss: () -> Unit,
-        onConfirm: (String, String, Int, Int, Int) -> Unit, // name, type, sets, reps, weight
+        onConfirm: (String, String, Int, Int, Int) -> Unit,
         context: Context,
         onNewEntryAdded: () -> Unit,
 
@@ -298,7 +349,118 @@ class NutritionUI {
             }
         }
     }
+    @Composable
+    fun SetGoalOverlay(
+        onDismiss: () -> Unit,
+        onConfirm: (String, Int, Int, Int) -> Unit,
+        context: Context,
+        onNewEntryAdded: () -> Unit,
 
+        ) {
+        // States für die Eingaben
+        var calories by remember { mutableStateOf("") }
+        var carbs by remember { mutableStateOf("") }
+        var fats by remember { mutableStateOf("") }
+        var protein by remember { mutableStateOf("") }
+
+        // Halbtransparenter Hintergrund
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.5f))
+                .clickable(onClick = onDismiss),
+            contentAlignment = Alignment.Center
+        ) {
+            // Innencontainer
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .background(MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(16.dp))
+                    .padding(24.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+
+                    OutlinedTextField(
+                        value = calories,
+                        onValueChange = { calories = it },
+                        label = { Text("Calories") },
+                        modifier = Modifier.weight(1f),
+
+                        )
+                }
+
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    OutlinedTextField(
+                        value = carbs,
+                        onValueChange = { carbs = it },
+                        label = { Text("Carbs") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .widthIn(min = 100.dp),
+                        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+
+                        )
+                    OutlinedTextField(
+                        value = fats,
+                        onValueChange = { fats = it },
+                        label = { Text("Fats") },
+                        modifier = Modifier.weight(1f).widthIn(min = 100.dp),
+                        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+
+                        )
+                    OutlinedTextField(
+                        value = protein,
+                        onValueChange = { protein = it },
+                        label = { Text("Protein") },
+                        modifier = Modifier.weight(1f).widthIn(min = 100.dp),
+                        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+
+                        )
+                }
+                var message by remember { mutableStateOf("") }
+
+                Button(
+                    /*
+                                        onClick = {
+                                            if (name.isNotBlank() && type.isNotBlank() && sets.isNotBlank()
+                                                && reps.isNotBlank() && weight.isNotBlank()
+                                            ) {
+                                            try {
+                                                val file = File(context.filesDir, "exercise-log.txt")
+                                                val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(java.util.Date())
+                                                val entry = "$name;$type;$sets;$reps;$weight;$today"
+                                                file.appendText("$entry\n")
+                                                message = "Entry added!"
+                                                onNewEntryAdded()
+                                            } catch (e: Exception) {
+                                                message = "Error: ${e.localizedMessage}"
+                                            }}
+                                        },*/
+
+                    onClick = {
+                        if (calories.isNotBlank() && carbs.isNotBlank()
+                            && fats.isNotBlank() && protein.isNotBlank()
+                        ) {
+                            onConfirm(
+                                calories,
+                                carbs.toIntOrNull() ?: 0,
+                                fats.toIntOrNull() ?: 0,
+                                protein.toIntOrNull() ?: 0,
+                            )
+                            onDismiss()
+                        }
+
+                    },
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    shape = RoundedCornerShape(50),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                ) {
+                    Text("Confirm")
+                }
+            }
+        }
+    }
     @Composable
     fun MealCard(
         name: String,
@@ -364,15 +526,15 @@ class NutritionUI {
     }
 
     @Composable
-    fun DailyGoalsCard(calories: Int, carbs: Int, fats: Int, protein: Int) {
+    fun DailyGoalsCard(calories: Int, carbs: Int, fats: Int, protein: Int, nGoals: Goals) {
         val caloriesFloat = calories.toFloat()
         val carbsFloat = carbs.toFloat()
         val fatsFloat = fats.toFloat()
         val proteinFloat = protein.toFloat()
-        val remainingCaloriesFloat = testGoals.caloriesGoal - caloriesFloat
-        val remainingFatsFloat = testGoals.fatsGoal - fatsFloat
-        val remainingCarbsFloat = testGoals.carbsGoal - carbsFloat
-        val remainingProteinFloat = testGoals.proteinGoal - proteinFloat
+        val remainingCaloriesFloat = nGoals.caloriesGoal - caloriesFloat
+        val remainingFatsFloat = nGoals.fatsGoal - fatsFloat
+        val remainingCarbsFloat = nGoals.carbsGoal - carbsFloat
+        val remainingProteinFloat = nGoals.proteinGoal - proteinFloat
 
 
         Row(modifier = Modifier
@@ -388,7 +550,7 @@ class NutritionUI {
                 ),
                 colors = listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.primaryContainer),
                 modifier = Modifier.size(200.dp),
-                centerText = "Calories: $calories / ${testGoals.caloriesGoal}"
+                centerText = "Calories: $calories / ${nGoals.caloriesGoal}"
             )
             Spacer(modifier = Modifier.size(20.dp))
 
@@ -448,11 +610,7 @@ class NutritionUI {
 
 
 
-    @Composable
-    @Preview
-    fun PreviewDailyGoalsCard(){
-        DailyGoalsCard(2000,250,60,120)
-    }
+
     @Composable
     fun NutritionGoalPieChart(
         data: Map<String, Float>,

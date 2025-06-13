@@ -74,6 +74,22 @@ class DB {
         file.writeText(lines.joinToString("\n"))
     }
 
+    fun loadGoals(context: Context): String {
+        var goalsString = ""
+        val filename = "nutrition-goals.txt"
+        val file = File(context.filesDir, filename)
+
+        Log.d("DB", "loadExercises: Path = ${file.absolutePath}")
+        if (!file.exists()) {
+            Log.d("DB", "File does not exist yet.")
+            return goalsString
+        }
+
+        goalsString = file.readText()
+        Log.d("DB", "loadedGoals: $goalsString")
+
+        return goalsString
+    }
 
 
     fun saveMealToFile(context: Context, mealText: String) {
