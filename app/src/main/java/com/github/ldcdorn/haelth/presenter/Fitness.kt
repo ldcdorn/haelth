@@ -1,4 +1,4 @@
-package com.github.ldcdorn.haelth.model;
+package com.github.ldcdorn.haelth.presenter;
 
 import android.content.Context
 import java.sql.Date;
