@@ -31,7 +31,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.unit.dp
 import com.github.ldcdorn.haelth.R
 import com.github.ldcdorn.haelth.ui.theme.HaelthTheme
-import com.github.ldcdorn.haelth.model.Fitness
+import com.github.ldcdorn.haelth.presenter.Fitness
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
