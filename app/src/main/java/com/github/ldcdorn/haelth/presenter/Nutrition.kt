@@ -12,6 +12,8 @@ import java.io.InputStreamReader
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.Locale
+import android.util.Log
+
 
 
 class Nutrition {
@@ -34,8 +36,8 @@ class Nutrition {
     }
 
     public fun deleteMealFromLog(context: Context, meal: Meal){
-        db.deleteExercise(context, meal.toString())
-
+        Log.d("NUT","meal.toString = ${meal.toString()}")
+        db.deleteMeal(context, meal.toString())
     }
 
     public fun getGoals(context: Context): Goals{

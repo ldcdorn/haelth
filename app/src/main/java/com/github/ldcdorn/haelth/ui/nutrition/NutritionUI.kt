@@ -248,8 +248,8 @@ class NutritionUI {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
-                .clickable(onClick = onDismiss),
+                .background(Color.Black.copy(alpha = 0.5f)),
+                //.clickable(onClick = onDismiss),
             contentAlignment = Alignment.Center
         ) {
             // Innencontainer
@@ -507,7 +507,7 @@ class NutritionUI {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text(text = "${carbs}g of carbs, ${fats}g of fats, ${protein}g of proteins")
+                        Text(text = "${carbs}g of carbs, ${fats}g of protein, ${protein}g of fats")
 
                     }
                 }
