@@ -11,7 +11,7 @@ data class Meal(
     val date: Date
 ) {
     override fun toString(): String {
-        return "$name;$calories;$carbs;$fats;$protein;$date"
+        return "$name;$calories;$carbs;$protein;$fats;$date"
     }
 }
 

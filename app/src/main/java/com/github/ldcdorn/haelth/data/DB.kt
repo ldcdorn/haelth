@@ -12,9 +12,6 @@ class DB {
     val path: String =""
     var version: String ="1.1"
 
-    fun checkIntegrity() {
-        // TODO
-    }
 
     fun saveWorkoutToFile(context: Context, workoutText: String) {
         val filename = "exercise-log.txt"
@@ -28,7 +25,16 @@ class DB {
             e.printStackTrace()
         }
     }
-
+    public fun deleteMeal(context: Context, mealString: String) {
+        Log.d("NUT","in delete exercise")
+        val file = File(context.filesDir, "nutrition-log.txt")
+        if (!file.exists()) return
+        Log.d("NUT","nach return")
+        val targetLine = mealString
+        val lines = file.readLines().filter { it != targetLine }
+        file.writeText(lines.joinToString("\n"))
+        Log.d("NUT","Neuer Text: ${lines.joinToString("\n")}")
+    }
     fun loadExercises(context: Context): List<Exercise> {
         val exercises = mutableListOf<Exercise>()
         val filename = "exercise-log.txt"
@@ -65,13 +71,17 @@ class DB {
         return exercises
     }
 
-    fun deleteExercise(context: Context, exerciseString: String) {
+    public fun deleteExercise(context: Context, exerciseString: String) {
+
+
         val file = File(context.filesDir, "exercise-log.txt")
         if (!file.exists()) return
+
 
         val targetLine = exerciseString
         val lines = file.readLines().filter { it != targetLine }
         file.writeText(lines.joinToString("\n"))
+
     }
 
     fun loadGoals(context: Context): String {
@@ -90,7 +100,6 @@ class DB {
 
         return goalsString
     }
-
 
     fun saveMealToFile(context: Context, mealText: String) {
         val filename = "nutrition-log.txt"
@@ -140,18 +149,5 @@ class DB {
         Log.d("DB", "Loaded Meals: ${meals.size}")
         return meals
     }
-
-    fun deleteMeal(context: Context, mealString: String) {
-        val file = File(context.filesDir, "nutrition-log.txt")
-        if (!file.exists()) return
-
-        val targetLine = mealString
-        val lines = file.readLines().filter { it != targetLine }
-        file.writeText(lines.joinToString("\n"))
-    }
-
-
-
-
 
 }
