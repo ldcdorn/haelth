@@ -17,7 +17,7 @@ our Blog Posts on Github Discussions or take a look at our [Sprint Board](https:
 # Documentation Index
 - [Project Handout](https://github.com/ldcdorn/haelth/blob/main/doc/final_presentation/H%C3%86LTH%20Handout-1.pdf)
 - [Final Presentation slides](https://github.com/ldcdorn/haelth/blob/main/doc/final_presentation/H%C3%86LTH%20Pr%C3%A4sentation.pdf)
-- [Screenshots](Todo Sid)
+- [Screenshots](https://github.com/ldcdorn/haelth/tree/main/doc/Demo%20Screenshots)
 - [SRS](https://github.com/ldcdorn/haelth/blob/main/doc/software_requirement_specification.md)
 - [arc42](https://github.com/ldcdorn/haelth/blob/main/doc/arc42.md)
 - Quality Assurance
